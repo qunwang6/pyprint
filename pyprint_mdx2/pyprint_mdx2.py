@@ -8,7 +8,7 @@
 f = open('index.txt','w')
 r = open('r.txt')
 count = 1
-
+hc = ""
 text = '<link href="DefaultStyle.css" rel="stylesheet" type="text/css"/>\n<span class="left">☜</span><span class="word1">%s</span><span class="right">☞</span><span class="word2">%s</span><a class="pre" href="entry://%s">上一页</a><a class="nex" href="entry://%s">下一页</a><img class="img" src="images/%s.jpg"/>\n'
 
 #第一行空
@@ -23,13 +23,19 @@ while (count <= line):
 	s1 = n1.zfill(6)
 	n2 = str(count+1)
 	s2 = n2.zfill(6)
-	
+	nb = 0
 	rd = r.readline()
 	rw = rd.strip('\n')
 	for i in rw.split('/'):
 		rw2 = i.strip('\n')
 		
-		for i in rw2.split('|'):
+		for j in rw2.split('|'):
+			if (len(j)>1):
+
+				hc =  str(nb+1) + j
+				print hc
+			else:
+				print i
 			f.write('%s\n' % i.strip('\n'))
 			f.write('@@@LINK=%s\n' % count)
 			f.write('</>\n')
@@ -42,7 +48,7 @@ while (count <= line):
 	#词头前序号
 		for j,k in enumerate(rw4):
 			rw6 = str(j+1)+str(k)
-	 		print rw6
+	 		#print rw6
 	 		#f.write(text % (rw6,rw3[1],count-1,count+1,count))
 	
 						
